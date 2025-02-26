@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/buildSrc" name="buildSrc">
+                <projects>
+                  <project path="$PROJECT_DIR$/buildSrc" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/ott-adapters" />
+            <option value="$PROJECT_DIR$/ott-adapters/adapter-http" />
+            <option value="$PROJECT_DIR$/ott-adapters/adapter-persistence" />
+            <option value="$PROJECT_DIR$/ott-apps" />
+            <option value="$PROJECT_DIR$/ott-apps/app-api" />
+            <option value="$PROJECT_DIR$/ott-apps/app-batch" />
+            <option value="$PROJECT_DIR$/ott-commons" />
+            <option value="$PROJECT_DIR$/ott-core" />
+            <option value="$PROJECT_DIR$/ott-core/core-domain" />
+            <option value="$PROJECT_DIR$/ott-core/core-port" />
+            <option value="$PROJECT_DIR$/ott-core/core-service" />
+            <option value="$PROJECT_DIR$/ott-core/core-usecase" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
