@@ -1,5 +1,6 @@
-package com.backend.ott.sample;
+package com.backend.ott.controller.sample;
 
+import com.backend.ott.sample.SearchSampleUseCase;
 import com.backend.ott.sample.response.SampleResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
