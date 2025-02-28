@@ -1,5 +1,5 @@
 spring:
   config:
-    location:
+    import:
       - 'classpath:adapter-http-property.yml'
       - 'classpath:adapter-persistence-property.yml'
