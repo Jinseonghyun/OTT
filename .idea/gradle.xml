@@ -15,8 +15,9 @@
             </builds>
           </compositeBuild>
         </compositeConfiguration>
+        <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="PLATFORM" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -24,6 +25,7 @@
             <option value="$PROJECT_DIR$/ott-adapters" />
             <option value="$PROJECT_DIR$/ott-adapters/adapter-http" />
             <option value="$PROJECT_DIR$/ott-adapters/adapter-persistence" />
+            <option value="$PROJECT_DIR$/ott-adapters/adapter-redis" />
             <option value="$PROJECT_DIR$/ott-apps" />
             <option value="$PROJECT_DIR$/ott-apps/app-api" />
             <option value="$PROJECT_DIR$/ott-apps/app-batch" />

@@ -2,3 +2,5 @@ spring:
   config:
     import:
       - 'classpath:adapter-http-property.yml'
+      - 'classpath:adapter-persistence-property.yml'
+      - 'classpath:adapter-redis-property.yml'
