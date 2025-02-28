@@ -2,6 +2,7 @@ rootProject.name = "OTT"
 
 include("ott-adapters:adapter-http")
 include("ott-adapters:adapter-persistence")
+include("ott-adapters:adapter-redis")
 
 include("ott-apps:app-api")
 include("ott-apps:app-batch")
