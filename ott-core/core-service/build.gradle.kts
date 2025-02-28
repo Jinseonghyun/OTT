@@ -6,4 +6,5 @@ dependencies {
     runtimeOnly(project(":ott-adapters:adapter-persistence"))
 
     implementation("org.springframework:spring-context")
+    implementation("org.springframework.data:spring-data-commons")
 }
