@@ -1,5 +1,7 @@
-package com.backend.ott.movie;
+package com.backend.ott.controller.movie;
 
+import com.backend.ott.controller.OttApiResponse;
+import com.backend.ott.movie.FetchMovieUseCase;
 import com.backend.ott.movie.response.PageableMoviesResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +15,8 @@ public class MovieController {
     private final FetchMovieUseCase fetchMovieUseCase;
 
     @GetMapping("/api/v1/movie/client/{page}")
-    public String fetchMoviePageables(@PathVariable int page) {
+    public OttApiResponse<PageableMoviesResponse> fetchMoviePageables(@PathVariable int page) {
         PageableMoviesResponse pageableMoviesResponse = fetchMovieUseCase.fetchFromClient(page);
-        return "";
+        return OttApiResponse.ok(pageableMoviesResponse);
     }
 }

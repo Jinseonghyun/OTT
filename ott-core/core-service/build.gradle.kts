@@ -1,6 +1,8 @@
 dependencies {
     implementation(project(":ott-core:core-usecase"))
     implementation(project(":ott-core:core-port"))
+    implementation(project(":ott-core:core-domain"))
+    implementation(project(":ott-commons"))
 
     runtimeOnly(project(":ott-adapters:adapter-http"))
     runtimeOnly(project(":ott-adapters:adapter-persistence"))

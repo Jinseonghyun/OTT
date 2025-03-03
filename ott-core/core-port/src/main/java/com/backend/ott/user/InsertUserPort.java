@@ -1,0 +1,5 @@
+package com.backend.ott.user;
+
+public interface InsertUserPort {
+    UserPortResponse create(CreateUser user);
+}
