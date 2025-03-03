@@ -13,11 +13,12 @@ function Login({ setIsLoggedIn }) {
         e.preventDefault();
         try {
             // /login API에 POST 요청
-            const response = await axios.post('http://localhost:8080/api/v1/auth/login', {
+            const response = await axios.post('http://localhost:8080/api/v1/user/login', {
                 email: username,
                 password
             });
 
+            console.log(response)
             if (!response.data.success) {
                 alert('로그인 실패. ' + response.data.code);
             } else {
