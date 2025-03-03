@@ -1,5 +1,6 @@
 package com.backend.ott.controller.user.request;
 
+import com.backend.ott.annotation.PasswordEncryption;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -8,7 +9,10 @@ import lombok.NoArgsConstructor;
 public class UserRegisterRequest {
 
     private String username;
+
+    @PasswordEncryption
     private String password;
+
     private String email;
     private String phone;
 

@@ -6,7 +6,6 @@ import com.backend.ott.user.RegisterUserUseCase;
 import com.backend.ott.user.command.UserRegistrationCommand;
 import com.backend.ott.user.response.UserRegistrationResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final RegisterUserUseCase registerUserUseCase;
-    private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/api/v1/user/register")
     public OttApiResponse<UserRegistrationResponse> register(@RequestBody UserRegisterRequest request) {
@@ -24,7 +22,7 @@ public class UserController {
                 UserRegistrationCommand.builder()
                         .email(request.getEmail())
                         .username(request.getUsername())
-                        .encryptedPassword(passwordEncoder.encode(request.getPassword()))
+                        .encryptedPassword(request.getPassword())
                         .phone(request.getPhone())
                         .build()
         );
