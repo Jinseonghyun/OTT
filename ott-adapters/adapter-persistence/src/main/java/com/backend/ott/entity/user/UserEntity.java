@@ -33,7 +33,7 @@ public class UserEntity extends MutableBaseEntity {
     @Column(name = "PHONE")
     private String phone;
 
-    private UserEntity(String username, String password, String email, String phone) {
+    public UserEntity(String username, String password, String email, String phone) {
         this.userId = UUID.randomUUID().toString();
         this.username = username;
         this.password = password;

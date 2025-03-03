@@ -34,9 +34,10 @@ public class SecurityConfig {
         httpSecurity.userDetailsService(ottUserDetailsService);
 
         httpSecurity.authorizeHttpRequests(auth ->
-                auth.anyRequest().authenticated());
+                auth.requestMatchers("/api/v1/user/register").permitAll()
+                .anyRequest().authenticated());
 
-        httpSecurity.oauth2Login(oauth2 -> oauth2.failureUrl("/login?error=true"));
+//        httpSecurity.oauth2Login(oauth2 -> oauth2.failureUrl("/login?error=true"));
 
         return httpSecurity.build();
     }

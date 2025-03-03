@@ -1,7 +1,9 @@
 package com.backend.ott.user;
 
 import com.backend.ott.exception.UserException;
-import com.backend.ott.user.command.UserResponse;
+import com.backend.ott.user.command.UserRegistrationCommand;
+import com.backend.ott.user.response.UserRegistrationResponse;
+import com.backend.ott.user.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +11,10 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements FetchUserUseCase{
+public class UserService implements FetchUserUseCase, RegisterUserUseCase {
 
     private final FetchUserPort fetchUserPort;
+    private final InsertUserPort insertUserPort;
 
     @Override
     public UserResponse findUserByEmail(String email) {
@@ -30,5 +33,29 @@ public class UserService implements FetchUserUseCase{
                 .role(userPortResponse.getRole())
                 .username(userPortResponse.getUsername())
                 .build();
+    }
+
+    @Override
+    public UserRegistrationResponse register(UserRegistrationCommand command) {
+        String email = command.getEmail();
+        // 사용자 조회
+        Optional<UserPortResponse> byEmail = fetchUserPort.findByEmail(email);
+
+        // 만약 있으면?
+        if (byEmail.isPresent()) {
+            throw new UserException.UserAlreadyExistException();
+        }
+
+        // 회원가입 시도
+        UserPortResponse response = insertUserPort.create(CreateUser.builder()
+                        .username(command.getUsername())
+                        .encryptedPassword(command.getEncryptedPassword())
+                        .email(command.getEmail())
+                        .phone(command.getPhone())
+                        .build()
+        );
+
+        // UserRegistrationResponse 리턴
+        return new UserRegistrationResponse(response.getUsername(), response.getEmail(), response.getPhone());
     }
 }

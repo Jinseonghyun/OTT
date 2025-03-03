@@ -1,7 +1,7 @@
 package com.backend.ott.security;
 
 import com.backend.ott.user.FetchUserUseCase;
-import com.backend.ott.user.command.UserResponse;
+import com.backend.ott.user.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,4 +1,4 @@
-package com.backend.ott.user.command;
+package com.backend.ott.user.response;
 
 import lombok.Builder;
 import lombok.Getter;
