@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import Main from "./pages/Main";
 import KakaoAuthRedirect from "./pages/KakaoAuthRedirect";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);  // 로그인 상태 관리
