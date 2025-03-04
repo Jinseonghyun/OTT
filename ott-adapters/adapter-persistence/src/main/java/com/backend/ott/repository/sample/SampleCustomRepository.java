@@ -1,6 +1,6 @@
-package com.backend.ott.repository;
+package com.backend.ott.repository.sample;
 
-import com.backend.ott.entity.SampleEntity;
+import com.backend.ott.entity.sample.SampleEntity;
 
 import java.util.List;
 

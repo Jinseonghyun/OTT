@@ -24,3 +24,38 @@ CREATE TABLE `ott`.`sample`
 
     PRIMARY KEY (SAMPLE_ID)
 );
+
+DROP TABLE IF EXISTS `ott`.`tokens`;
+CREATE TABLE `ott`.`tokens`
+(
+    TOKEN_ID                 VARCHAR(255) NOT NULL COMMENT '토큰 PK',
+    USER_ID                  VARCHAR(255) NOT NULL COMMENT '사용자 ID',
+    ACCESS_TOKEN             VARCHAR(255) COMMENT '액세스 토큰',
+    REFRESH_TOKEN            VARCHAR(255) COMMENT '리프레시 토큰',
+    ACCESS_TOKEN_EXPIRES_AT  DATETIME COMMENT '액세스 토큰 만료시간',
+    REFRESH_TOKEN_EXPIRES_AT DATETIME COMMENT '리프레시 토큰 만료시간',
+
+    CREATED_AT               DATETIME     NOT NULL COMMENT '생성일자',
+    CREATED_BY               VARCHAR(50)  NOT NULL COMMENT '생성자',
+    MODIFIED_AT              DATETIME     NOT NULL COMMENT '수정일자',
+    MODIFIED_BY              VARCHAR(50)  NOT NULL COMMENT '수정자',
+
+    PRIMARY KEY (TOKEN_ID)
+);
+
+
+DROP TABLE IF EXISTS `ott`.`social_users`;
+CREATE TABLE `ott`.`social_users`
+(
+    SOCIAL_USER_ID VARCHAR(255) NOT NULL COMMENT '소셜 사용자 ID (UUID)',
+    USER_NAME      VARCHAR(50)  NOT NULL COMMENT '소셜 사용자 이름',
+    PROVIDER       VARCHAR(255) NOT NULL COMMENT '소셜 프로바이더 (구글, 카카오, 네이버 등)',
+    PROVIDER_ID    VARCHAR(255) NOT NULL COMMENT '프로바이더 ID',
+
+    CREATED_AT     DATETIME     NOT NULL COMMENT '생성일자',
+    CREATED_BY     VARCHAR(50)  NOT NULL COMMENT '생성자',
+    MODIFIED_AT    DATETIME     NOT NULL COMMENT '수정일자',
+    MODIFIED_BY    VARCHAR(50)  NOT NULL COMMENT '수정자',
+
+    PRIMARY KEY (SOCIAL_USER_ID)
+);

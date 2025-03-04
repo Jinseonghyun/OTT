@@ -15,6 +15,7 @@ public class UserService implements FetchUserUseCase, RegisterUserUseCase {
 
     private final FetchUserPort fetchUserPort;
     private final InsertUserPort insertUserPort;
+    private final KakaoUserPort kakaoUserPort;
 
     @Override
     public UserResponse findUserByEmail(String email) {
@@ -32,6 +33,27 @@ public class UserService implements FetchUserUseCase, RegisterUserUseCase {
                 .phone(userPortResponse.getPhone())
                 .role(userPortResponse.getRole())
                 .username(userPortResponse.getUsername())
+                .build();
+    }
+
+    @Override
+    public UserResponse findByProviderId(String providerId) {
+        return fetchUserPort.findByProviderId(providerId)
+                .map(it -> UserResponse.builder()
+                        .providerId(it.getProviderId())
+                        .provider(it.getProvider())
+                        .username(it.getUsername())
+                        .build())
+                .orElse(null);
+    }
+
+    @Override
+    public UserResponse findKakaoUser(String accessToken) {
+        UserPortResponse userFromKakao = kakaoUserPort.findUserFromKakao(accessToken);
+        return UserResponse.builder()
+                .provider(userFromKakao.getProvider())
+                .providerId(userFromKakao.getProviderId())
+                .username(userFromKakao.getUsername())
                 .build();
     }
 
@@ -57,5 +79,16 @@ public class UserService implements FetchUserUseCase, RegisterUserUseCase {
 
         // UserRegistrationResponse 리턴
         return new UserRegistrationResponse(response.getUsername(), response.getEmail(), response.getPhone());
+    }
+
+    @Override
+    public UserRegistrationResponse registerSocialUser(String username, String provider, String providerId) {
+        Optional<UserPortResponse> byProviderId = fetchUserPort.findByProviderId(providerId);
+        if (byProviderId.isPresent()) {
+            return null;
+        }
+
+        UserPortResponse socialUser = insertUserPort.createSocialUser(username, provider, providerId);
+        return new UserRegistrationResponse(socialUser.getUsername(), null, null);
     }
 }

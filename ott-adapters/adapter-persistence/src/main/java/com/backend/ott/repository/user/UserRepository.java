@@ -1,6 +1,8 @@
 package com.backend.ott.repository.user;
 
+import com.backend.ott.entity.user.SocialUserEntity;
 import com.backend.ott.entity.user.UserEntity;
+import com.backend.ott.repository.social.SocialUserJpaRepository;
 import com.backend.ott.user.CreateUser;
 import com.backend.ott.user.FetchUserPort;
 import com.backend.ott.user.InsertUserPort;
@@ -16,6 +18,7 @@ import java.util.Optional;
 public class UserRepository implements FetchUserPort , InsertUserPort {
 
     private final UserJpaRepository userJpaRepository;
+    private final SocialUserJpaRepository socialUserJpaRepository;
 
     @Override
     @Transactional
@@ -33,6 +36,23 @@ public class UserRepository implements FetchUserPort , InsertUserPort {
 
     @Override
     @Transactional
+    public Optional<UserPortResponse> findByProviderId(String providerId) {
+        Optional<SocialUserEntity> byProviderId = socialUserJpaRepository.findByProviderId(providerId);
+        if (byProviderId.isEmpty()) {
+            return Optional.empty();
+        }
+
+        SocialUserEntity socialUserEntity = byProviderId.get();
+
+        return Optional.of(UserPortResponse.builder()
+                .provider(socialUserEntity.getProvider())
+                .providerId(socialUserEntity.getProviderId())
+                .username(socialUserEntity.getUsername())
+                .build());
+    }
+
+    @Override
+    @Transactional
     public UserPortResponse create(CreateUser user) {
         UserEntity userEntity = new UserEntity(
                 user.getUsername(),
@@ -46,6 +66,18 @@ public class UserRepository implements FetchUserPort , InsertUserPort {
                 .password(save.getPassword())
                 .email(save.getEmail())
                 .phone(save.getPhone())
+                .build();
+    }
+
+    @Override
+    @Transactional
+    public UserPortResponse createSocialUser(String username, String provider, String providerId) {
+        SocialUserEntity socialUserEntity = new SocialUserEntity(username, provider, providerId);
+        socialUserJpaRepository.save(socialUserEntity);
+        return UserPortResponse.builder()
+                .provider(socialUserEntity.getProvider())
+                .providerId(socialUserEntity.getProviderId())
+                .username(socialUserEntity.getUsername())
                 .build();
     }
 }
