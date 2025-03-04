@@ -1,4 +1,4 @@
-package com.backend.ott.entity;
+package com.backend.ott.entity.sample;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

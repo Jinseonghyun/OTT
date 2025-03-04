@@ -1,7 +1,7 @@
-package com.backend.ott.repository;
+package com.backend.ott.repository.sample;
 
 import com.backend.ott.entity.QSampleEntity;
-import com.backend.ott.entity.SampleEntity;
+import com.backend.ott.entity.sample.SampleEntity;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
