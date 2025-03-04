@@ -38,7 +38,13 @@ public class UserService implements FetchUserUseCase, RegisterUserUseCase {
 
     @Override
     public UserResponse findByProviderId(String providerId) {
-        return null;
+        return fetchUserPort.findByProviderId(providerId)
+                .map(it -> UserResponse.builder()
+                        .providerId(it.getProviderId())
+                        .provider(it.getProvider())
+                        .username(it.getUsername())
+                        .build())
+                .orElse(null);
     }
 
     @Override
@@ -73,5 +79,16 @@ public class UserService implements FetchUserUseCase, RegisterUserUseCase {
 
         // UserRegistrationResponse 리턴
         return new UserRegistrationResponse(response.getUsername(), response.getEmail(), response.getPhone());
+    }
+
+    @Override
+    public UserRegistrationResponse registerSocialUser(String username, String provider, String providerId) {
+        Optional<UserPortResponse> byProviderId = fetchUserPort.findByProviderId(providerId);
+        if (byProviderId.isPresent()) {
+            return null;
+        }
+
+        UserPortResponse socialUser = insertUserPort.createSocialUser(username, provider, providerId);
+        return new UserRegistrationResponse(socialUser.getUsername(), null, null);
     }
 }
