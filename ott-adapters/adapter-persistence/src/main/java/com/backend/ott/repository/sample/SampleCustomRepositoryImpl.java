@@ -1,6 +1,6 @@
 package com.backend.ott.repository.sample;
 
-import com.backend.ott.entity.QSampleEntity;
+import com.backend.ott.entity.sample.QSampleEntity;
 import com.backend.ott.entity.sample.SampleEntity;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;

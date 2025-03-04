@@ -49,6 +49,17 @@ public class TokenEntity  {
         this.refreshTokenExpiresAt = getRefreshTokenExpiredAt(now);
     }
 
+    public static TokenEntity newTokenEntity(String userId, String accessToken, String refreshToken){
+        LocalDateTime now = LocalDateTime.now();
+        return new TokenEntity(
+                userId,
+                accessToken,
+                refreshToken,
+                getAccessTokenExpiredAt(now),
+                getRefreshTokenExpiredAt(now)
+        );
+    }
+
     private static LocalDateTime getAccessTokenExpiredAt(LocalDateTime now) {
         return now.plusHours(3);
     }

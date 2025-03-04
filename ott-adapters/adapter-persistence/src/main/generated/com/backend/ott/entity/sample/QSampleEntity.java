@@ -1,8 +1,7 @@
-package com.backend.ott.entity;
+package com.backend.ott.entity.sample;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.backend.ott.entity.sample.SampleEntity;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -16,7 +15,7 @@ import com.querydsl.core.types.Path;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QSampleEntity extends EntityPathBase<SampleEntity> {
 
-    private static final long serialVersionUID = -105261198L;
+    private static final long serialVersionUID = -1301666996L;
 
     public static final QSampleEntity sampleEntity = new QSampleEntity("sampleEntity");
 
