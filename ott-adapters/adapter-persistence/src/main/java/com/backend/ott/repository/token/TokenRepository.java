@@ -30,7 +30,7 @@ public class TokenRepository implements SearchTokenPort, InsertTokenPort, Update
     public TokenPortResponse findByUserId(String userId) {
         return tokenJpaRepository.findByUserId(userId)
                 .map(result -> new TokenPortResponse(result.getAccessToken(), result.getRefreshToken()))
-                .orElseThrow();
+                .orElse(null);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.backend.ott.entity.token;
 
+import com.backend.ott.audit.MutableBaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "tokens")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class TokenEntity  {
+public class TokenEntity extends MutableBaseEntity {
     @Id
     @Column(name = "TOKEN_ID")
     private String tokenId;

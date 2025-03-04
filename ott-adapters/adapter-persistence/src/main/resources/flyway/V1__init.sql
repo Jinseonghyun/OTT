@@ -42,3 +42,20 @@ CREATE TABLE `ott`.`tokens`
 
     PRIMARY KEY (TOKEN_ID)
 );
+
+
+DROP TABLE IF EXISTS `ott`.`social_users`;
+CREATE TABLE `ott`.`social_users`
+(
+    SOCIAL_USER_ID VARCHAR(255) NOT NULL COMMENT '소셜 사용자 ID (UUID)',
+    USER_NAME      VARCHAR(50)  NOT NULL COMMENT '소셜 사용자 이름',
+    PROVIDER       VARCHAR(255) NOT NULL COMMENT '소셜 프로바이더 (구글, 카카오, 네이버 등)',
+    PROVIDER_ID    VARCHAR(255) NOT NULL COMMENT '프로바이더 ID',
+
+    CREATED_AT     DATETIME     NOT NULL COMMENT '생성일자',
+    CREATED_BY     VARCHAR(50)  NOT NULL COMMENT '생성자',
+    MODIFIED_AT    DATETIME     NOT NULL COMMENT '수정일자',
+    MODIFIED_BY    VARCHAR(50)  NOT NULL COMMENT '수정자',
+
+    PRIMARY KEY (SOCIAL_USER_ID)
+);
