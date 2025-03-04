@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -47,5 +49,12 @@ public class UserController {
         OttAuthUser principal = (OttAuthUser) authenticate.getPrincipal();
 
         return OttApiResponse.ok("access-token");
+    }
+
+    @PostMapping("/api/v1/user/callback")
+    public OttApiResponse<String> kakaoCallback(@RequestBody Map<String, String> request) {
+        String code = request.get("code");
+
+        return OttApiResponse.ok(null);
     }
 }
