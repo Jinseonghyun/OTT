@@ -5,9 +5,11 @@ import com.backend.ott.controller.user.request.UserLoginRequest;
 import com.backend.ott.controller.user.request.UserRegisterRequest;
 import com.backend.ott.security.OttAuthUser;
 import com.backend.ott.token.FetchTokenUseCase;
+import com.backend.ott.user.FetchUserUseCase;
 import com.backend.ott.user.RegisterUserUseCase;
 import com.backend.ott.user.command.UserRegistrationCommand;
 import com.backend.ott.user.response.UserRegistrationResponse;
+import com.backend.ott.user.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -25,6 +27,7 @@ public class UserController {
     private final RegisterUserUseCase registerUserUseCase;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final FetchTokenUseCase fetchTokenUseCase;
+    private final FetchUserUseCase fetchUserUseCase;
 
     @PostMapping("/api/v1/user/register")
     public OttApiResponse<UserRegistrationResponse> register(@RequestBody UserRegisterRequest request) {
@@ -58,6 +61,7 @@ public class UserController {
         String code = request.get("code");
 
         String accessTokenFromKakao = fetchTokenUseCase.getTokenFromKakao(code);
+        UserResponse kakaoUser = fetchUserUseCase.findKakaoUser(accessTokenFromKakao);
 
         return OttApiResponse.ok(null);
     }
