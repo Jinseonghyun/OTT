@@ -3,13 +3,16 @@ package com.backend.ott.movie;
 import com.backend.ott.movie.response.MovieResponse;
 import com.backend.ott.movie.response.PageableMoviesResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
-public class MovieService implements FetchMovieUseCase {
+public class MovieService implements FetchMovieUseCase, InsertMovieUseCase {
     private final TmdbMoviePort tmdbMoviePort;
 
     @Override
@@ -27,5 +30,10 @@ public class MovieService implements FetchMovieUseCase {
                 tmdbPageableMovies.getPage(),
                 tmdbPageableMovies.isHasNext()
         );
+    }
+
+    @Override
+    public void insert(List<MovieResponse> items) {
+        log.info("[{}] {}", items.size(), items.get(0).getMovieName());
     }
 }
